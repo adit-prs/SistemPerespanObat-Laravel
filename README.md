@@ -24,60 +24,60 @@ Mini project ini adalah aplikasi berbasis Laravel yang memungkinkan dokter untuk
 
 1. Clone Repository
 
-git clone <repo-url>
-cd <nama-folder-project>
+        git clone <repo-url>
+        cd <nama-folder-project>
 
 2. Install Dependency Backend
 
-composer install
+         composer install        
 
 3. Copy dan Konfigurasi File .env
 
-cp .env.example .env
+         cp .env.example .env
 
-Edit file .env sesuai database lokal dan mengonsumsi data dari API eksternal dan membutuhkan kredensial client:
+4. Edit file .env sesuai database lokal dan mengonsumsi data dari API eksternal dan membutuhkan kredensial client: (
+   Nilai email dan password ini tidak disertakan di repo. Pastikan Anda mengisi dengan kredensial yang sesuai untuk
+   mengakses data dari API
+   eksternal.)
 
-DB_DATABASE=nama_database
-DB_USERNAME=root
-DB_PASSWORD=
+        DB_DATABASE=nama_database
+        DB_USERNAME=root
+        DB_PASSWORD=
+        
+        API_CLIENT_ID=email-login-api
+        API_CLIENT_SECRET=password-login-api
 
-API_CLIENT_ID=email-login-api
-API_CLIENT_SECRET=password-login-api
+5. Generate App Key
 
-Nilai ini tidak disertakan di repo. Pastikan Anda mengisi dengan kredensial yang sesuai untuk mengakses data dari API
-eksternal.
+         php artisan key:generate
 
-4. Generate App Key
+6. Jalankan Migrasi
 
-php artisan key:generate
+         php artisan migrate --seed
 
-5. Jalankan Migrasi
+7. Jalankan Aplikasi
 
-php artisan migrate --seed
-
-6. Jalankan Aplikasi
-
-php artisan serve
+         php artisan serve
 
 Buka browser dan akses: http://localhost:8000
+
 🧩 Frontend (Vite)
 
 Project ini menggunakan Vite dan Bootstrap yang di-install via NPM.
 
 Bootstrap dan asset frontend sudah dibuild ke dalam public/build, jadi tidak perlu menjalankan npm install atau npm
 run dev jika hanya ingin menjalankan aplikasi.
+Namun jika ingin development mode:
 
-    Namun jika ingin development mode:
-
-npm install
-npm run dev
+    npm install
+    npm run dev
 
 🔐 Login Akun
 
 Contoh akun dummy :
 
-Email   : john.doe@email.com
-Password: password
+    Email   : john.doe@email.com
+    Password: password
 
 ✍️ Catatan
 
