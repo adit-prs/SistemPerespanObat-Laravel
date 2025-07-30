@@ -83,3 +83,4 @@ Contoh akun dummy :
 
 Karena keterbatasan waktu, beberapa fitur belum diselesaikan sepenuhnya. Namun struktur dan alur dasar sudah tersedia
 dan dapat dikembangkan lebih lanjut.
+untuk struktur databasenya bisa dilihat disini : https://dbdiagram.io/d/sistem-resep-obat-68848164cca18e685cd5595f
