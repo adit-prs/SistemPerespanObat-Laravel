@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\models\Patient;
+use App\Models\Patient;
 use Carbon\Carbon;
 
 class PatientService

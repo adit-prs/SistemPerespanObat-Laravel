@@ -39,6 +39,12 @@ class PrescriptionController extends Controller
     {
         $examDate = $this->examinationService->getById($idCheckUp)['examined_at'];
         $medicines = $this->prescriptionService->createIndex($request->validated(), $examDate);
-        return $medicines;
+        return response('success', 200);
+    }
+
+    public function indexPharmacist()
+    {
+        $prescription = $this->prescriptionService->getAllPrescription();
+        return view('pharmacist.prescriptionList', compact('prescription'));
     }
 }

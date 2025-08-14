@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreExaminationRequest;
 use App\Services\ExaminationService;
 use App\Services\PatientService;
+use App\Services\PrescriptionService;
 use Carbon\Carbon;
 
 class ExaminationController extends Controller
@@ -12,10 +13,13 @@ class ExaminationController extends Controller
     protected $patientService;
     protected $examinationService;
 
+    protected $prescriptionService;
+
     public function __construct()
     {
         $this->patientService = new PatientService();
         $this->examinationService = new ExaminationService();
+        $this->prescriptionService = new PrescriptionService();
     }
 
     //
@@ -38,11 +42,14 @@ class ExaminationController extends Controller
         return redirect()->route('patient.show', $id)->with('success', 'Pemerikasaan berhasil ditambahkan.');
     }
 
-    public function show($id)
+    public function show($id, $idCheckUp)
     {
         $patient = $this->patientService->getPatientById($id);
         $patient->age = Carbon::parse($patient->date_of_birth)->age;
-
-        return view('doctor.patientDetail', compact('patient'));
+        $examinations = $this->examinationService->getById($idCheckUp);
+        $examinations->visit = Carbon::parse($examinations['examined_at'])->format('d M Y');
+        $attachments = $this->examinationService->getAttachmentsByExaminationId($examinations['id']);
+        $prescription = $this->prescriptionService->getByExamId($idCheckUp);
+        return view('doctor.examinationDetail', compact('patient', 'examinations', 'attachments', 'prescription'));
     }
 }

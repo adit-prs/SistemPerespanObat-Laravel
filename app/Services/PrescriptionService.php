@@ -24,8 +24,27 @@ class PrescriptionService
         )->get();
     }
 
-    public function getById($id)
+    public function getAllPrescription()
     {
+        $listPrescription = Prescription::with(['prescriptionitem', 'examination.patient', 'examination.doctor'])
+            ->whereHas('examination', function ($q) {
+                $q->whereHas('patient')
+                    ->whereHas('doctor');
+            })
+            ->get();
+        return $listPrescription;
+    }
+
+    public function getByExamId($idExam)
+    {
+        $prescription = Prescription::where('examination_id', $idExam)->with('prescriptionitem')->get();
+        return $prescription;
+    }
+
+    public function getItemByPrescriptionId($idPrescription)
+    {
+        $listprescription = PrescriptionItem::where('prescription_id', $idPrescription)->get();
+        return $listprescription;
     }
 
     public function createIndex($data, $examDate)

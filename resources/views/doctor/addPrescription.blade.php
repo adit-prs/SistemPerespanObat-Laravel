@@ -354,7 +354,7 @@
 
                     <div class="prescription-header">
                         <div>
-                            <div class="prescription-medicine">${item.medicine.name}</div>
+                            <div class="prescription-medicine">${selectedMedicine['name']}</div>
                         </div>
                     </div>
 
@@ -436,10 +436,6 @@
                     },
                     body: JSON.stringify(prescriptionData)
                 });
-                const rawText = await response.text();
-                console.log('Raw response:', rawText);
-                const result = await response.json();
-                console.log(result);
                 if (response.ok) {
                     alert('Resep berhasil disimpan!');
                     window.location.href = `{{route('patient.show',$patient->id)}}`;

@@ -33,15 +33,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/patient/{id}', [PatientController::class, 'show'])->name('patient.show');
         Route::get('/patient/{id}/checkup', [ExaminationController::class, 'index'])->name('examination.index');
         Route::post('/patient/{id}/checkup', [ExaminationController::class, 'store'])->name('examination.store');
-        Route::get('/patient/{id}/checkup/{idCheckUp}', [PrescriptionController::class, 'index'])->name(
+        Route::get('/patient/{id}/checkup/{idCheckUp}/prescription', [PrescriptionController::class, 'index'])->name(
             'prescriptions.index'
         );
-        Route::post('/patient/{id}/checkup/{idCheckUp}', [PrescriptionController::class, 'store'])->name(
+
+        Route::post('/patient/{id}/checkup/{idCheckUp}/prescription', [PrescriptionController::class, 'store'])->name(
             'prescriptions.create'
         );
+
+        Route::get('/patient/{id}/checkup/{idCheckUp}', [ExaminationController::class, 'show'])->name('examination.show');
+
     });
     Route::middleware(['role:apoteker'])->group(function () {
 //        Route::get('/apoteker/dashboard', [ApotekerController::class, 'index'])->name('apoteker.dashboard');
+        Route::get('/prescription', [PrescriptionController::class, 'indexPharmacist'])->name('prescriptionsList.index');
     });
 });
 

@@ -46,17 +46,17 @@ class PatientController extends Controller
         $patient = $this->patientService->getPatientById($id);
         $patient->age = Carbon::parse($patient->date_of_birth)->age;
         $examinations = $this->examinationService->getByPatientId($patient->id);
-        $prescription = $this->prescriptionService->getAll($patient->id);
         $patient->totalVisit = count($examinations);
         $latestExam = collect($examinations)->sortByDesc('examined_at')->first();
         $patient->lastVisit = $latestExam ? Carbon::parse($latestExam['examined_at'])->format('d M Y') : null;
-
+        $lastPrescription = $this->prescriptionService->getByExamId($latestExam->id);
+        $prescription = $this->prescriptionService->getAll($id);
         foreach ($examinations as $examination) {
             $examination->date = Carbon::parse($examination['examined_at'])->format('d M Y');
             $examination->doctor = User::where('id', $examination['doctor_id'])->value('name');
         }
 
-        return view('doctor.patientDetail', compact('patient', 'examinations', 'prescription'));
+        return view('doctor.patientDetail', compact('patient', 'examinations', 'lastPrescription'));
     }
 
 

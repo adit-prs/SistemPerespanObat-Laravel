@@ -97,7 +97,7 @@
                                             </div>
                                         </div>
                                         <div class="ms-3">
-                                            <a href="#"
+                                            <a href="{{route('examination.show',[$patient->id, $examination->id])}}"
                                                class="btn btn-sm btn-primary-custom">
                                                 <i class="fas fa-eye me-1"></i>View Details
                                             </a>
@@ -117,7 +117,7 @@
                     <div class="col-lg-6">
                         <div class="info-card">
                             <h5 class="card-title">
-                                <i class="fas fa-pills me-2"></i>Current Medications
+                                <i class="fas fa-pills me-2"></i>Last Medications
                             </h5>
                             <div class="medication-item">
                                 <div class="medication-name">Lisinopril</div>

@@ -20,7 +20,7 @@ class ExaminationService
 
     public function getByPatientId($idPatient)
     {
-        return Examination::where('patient_id', $idPatient)->get();
+        return Examination::where('patient_id', $idPatient)->orderBy('examined_at','desc')->get();
     }
 
     public function create(string $id, array $data)
@@ -53,5 +53,10 @@ class ExaminationService
         }
         $result = [$createExam, $crateAttachments];
         return $result;
+    }
+
+    public function getAttachmentsByExaminationId($id)
+    {
+        return Attachment::where('examination_id', $id)->get();
     }
 }
