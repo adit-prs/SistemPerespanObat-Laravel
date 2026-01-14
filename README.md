@@ -63,10 +63,7 @@ Buka browser dan akses: http://localhost:8000
 
 Project ini menggunakan Vite dan Bootstrap yang dikelola melalui NPM.
 
-Bootstrap dan asset frontend sudah di-build ke public/build, jadi tidak wajib menjalankan npm install jika hanya ingin
-menjalankan aplikasi.
-
-Jika ingin mode development:
+Jika ingin menjalankan aplikasi dengan asset lengkap, jalankan:
 
     npm install
     npm run dev
