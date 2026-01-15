@@ -15,17 +15,17 @@ return new class extends Migration {
 
             $table->foreignUuid('doctor_id')->constrained('users');
             $table->foreignUuid('patient_id')->constrained('patients');
-            
+
             $table->date('examined_at');
             $table->text('chief_complaint');
             $table->enum('general_condition', ['baik', 'sedang', 'buruk']);
             $table->enum('consciousness', ['compos_mentis', 'apatis', 'somnolen', 'sopor', 'koma']);
             $table->decimal('height_cm', 8, 2);
             $table->decimal('weight_kg', 8, 2);
-            $table->tinyInteger('systole');
-            $table->tinyInteger('diastole');
-            $table->tinyInteger('heart_rate');
-            $table->tinyInteger('respiratory_rate');
+            $table->smallInteger('systole');
+            $table->smallInteger('diastole');
+            $table->smallInteger('heart_rate');
+            $table->smallInteger('respiratory_rate');
             $table->decimal('temperature_c', 8, 2);
             $table->text('diagnosis');
             $table->timestamps();

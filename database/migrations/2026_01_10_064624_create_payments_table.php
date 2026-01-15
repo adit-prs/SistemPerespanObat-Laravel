@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->integer('amount_due')->nullable();
             $table->integer('amount_paid')->nullable();
             $table->enum('status', ['belum_dibayar', 'sebagian', 'lunas', 'dibatalkan']);
-            $table->enum('method', ['tunai', 'kartu', 'transfer', 'qris'])->nullable();
+            $table->enum('method', ['tunai', 'kartu', 'transfer', 'qris', '-'])->nullable();
             $table->timestamps();
         });
     }
